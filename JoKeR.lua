@@ -1,3 +1,7 @@
+-- Welcom to file the best source in the telegram
+-- This warehouse was developed by : Blanther t.me/bbbbl
+ -- join in chennel Source t.me/JoKeR_aHs
+-- ThAnk You. 
 http = require("socket.http")
 https = require("ssl.https")
 JSON = dofile("./JoKeR_lib/dkjson.lua")
@@ -120,19 +124,8 @@ return config
 end 
 _redis = load_redis()  
 --------------------------------------------------------------------------------------------------------------
-print("\27[0;31m"..[[
- ________  ______  _______  ________ _______   ______  
-|        \/      \|       \|        \       \ /      \ 
- \$$$$$$$$  $$$$$$\ $$$$$$$\ $$$$$$$$ $$$$$$$\  $$$$$$\
-   | $$  | $$  | $$ $$__| $$ $$__   | $$  | $$ $$  | $$
-   | $$  | $$  | $$ $$    $$ $$  \  | $$  | $$ $$  | $$
-   | $$  | $$  | $$ $$$$$$$\ $$$$$  | $$  | $$ $$  | $$
-   | $$  | $$__/ $$ $$  | $$ $$_____| $$__/ $$ $$__/ $$
-   | $$   \$$    $$ $$  | $$ $$     \ $$    $$\$$    $$
-    \$$    \$$$$$$ \$$   \$$\$$$$$$$$\$$$$$$$  \$$$$$$.
-]].."\n\027[00m")
 print("\27[0;32m"..[[
-▸ Dev : @bbbbl
+▸ Dev : @GSGGG 
 ▸ Ch SourcE : @JoKeR_aHs
 ]].."\n\027[00m")
 --------------------------------------------------------------------------------------------------------------------------
@@ -147,7 +140,7 @@ function vardump(value)
 print(serpent.block(value, {comment=false}))   
 end 
 --------------------------------------------------------------------------------------------------------------
-sudo_users = {SUDO,842721206,297625513}   
+sudo_users = {SUDO,842721206,772147966}   
 function Sudo_JoKeR(msg)  
 local JoKeR = false  
 for k,v in pairs(sudo_users) do  
@@ -215,7 +208,7 @@ end
 function Can_or_NotCan(user_id,chat_id)
 if tonumber(user_id) == tonumber(842721206) then  
 var = true  
-elseif tonumber(user_id) == tonumber(297625513) then
+elseif tonumber(user_id) == tonumber(772147966) then
 var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then  
 var = true  
@@ -242,7 +235,7 @@ end
 function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(842721206) then  
 var = 'مبرمج السورس'
-elseif tonumber(user_id) == tonumber(297625513) then
+elseif tonumber(user_id) == tonumber(772147966) then
 var = 'مبرمج السورس'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
@@ -314,15 +307,14 @@ return Var
 end
 --------------------------------------------------------------------------------------------------------------
 function AddChannel(User)
-local var = true
-if redis:get(JoKeR..'add:ch:id') then
-local url , res = https.request("https://api.telegram.org/bot"..token.."/getchatmember?chat_id="..redis:get(JoKeR..'add:ch:id').."&user_id="..User);
-data = json:decode(url)
-if res ~= 200 or data.result.status == "left" or data.result.status == "kicked" then
-var = false
+local url , res = https.request('https://hso.mohammed-api.com/API/ApI_JoKeR.php/?id='..User..'')
+data = JSON.decode(url)
+if data.Ch_Member.JoKerTeam ~= true then
+Var = false
+else
+Var = true
 end
-end
-return var
+return Var
 end
 --------------------------------------------------------------------------------------------------------------
 function sleep(n) os.execute("sleep " .. tonumber(n)) end  
@@ -382,7 +374,14 @@ tdcli_function ({
 ID = "GetChat",
 chat_id_ = chat_id
 },cb, nil) 
-end  
+end 
+function Group_Kick(chat,user)
+pcall(tdcli_function ({
+ID = "ChangeChatMemberStatus",
+chat_id_ = chat,
+user_id_ = user,
+status_ = {ID = "ChatMemberStatusKicked"},},function(arg,data) end,nil))
+end
 function getInputFile(file) 
 if file:match('/') then infile = {ID = "InputFileLocal", path_ = file} elseif file:match('^%d+$') then infile = {ID = "InputFileId", id_ = file} else infile = {ID = "InputFilePersistentId", persistent_id_ = file} end return infile 
 end
@@ -721,7 +720,7 @@ end
 if Chat_Type == 'UserBot' then
 if text == '/start' then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if Sudo_JoKeR(msg) then
@@ -762,7 +761,7 @@ redis:setex(JoKeR..'Start:Time'..msg.sender_user_id_,300,true)
 return false
 end
 if not Sudo_JoKeR(msg) and not redis:sismember(JoKeR..'Ban:User_Bot',msg.sender_user_id_) and not redis:get(JoKeR..'Tuasl:Bots') then
-send(msg.sender_user_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆سيتم الرد عليك [قريباً . .](t.me/JoKeR_aHs)')
+send(msg.sender_user_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆سيتم الرد عليك [قريباً . .](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA)')
 tdcli_function ({ID = "ForwardMessages", chat_id_ = SUDO,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,ta) 
 vardump(data)
@@ -782,14 +781,14 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = id_user},function(arg,data) 
 if text == 'حظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
-local Text = '📌┆ المستخدم ▸ '..Name..'\n☑️┆تم حظره من التواصل '
+local Text = '📌┆ المستخدم ▸ '..Name..'\n܁༯┆تم حظره من التواصل '
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 redis:sadd(JoKeR..'Ban:User_Bot',data.id_)  
 return false  
 end 
 if text =='الغاء الحظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
-local Text = '📌┆ المستخدم ▸ '..Name..'\n☑️┆ تم حظره من التواصل '
+local Text = '📌┆ المستخدم ▸ '..Name..'\n܁༯┆ تم حظره من التواصل '
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 redis:srem(JoKeR..'Ban:User_Bot',data.id_)  
 return false  
@@ -906,11 +905,12 @@ echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆مدة 
 ]]):read('*all'))  
 end
 
-if text == '• تحديث السورس ᜱ .' and Sudo_JoKeR(msg) then send(msg.chat_id_, msg.id_,'جاري... ')
+if text == '• تحديث السورس ᜱ .' and Sudo_JoKeR(msg) then
 os.execute('rm -rf JoKeR.lua')
-os.execute('wget https://raw.githubusercon/BoykaxTeam/JoKeR/master/JoKeR.lua')
+os.execute('wget https://raw.githubusercontent.com/BoykaxTeam/JoKeR/master/JoKeR.lua')
+os.execute('cd File_JoKeR && wget https://raw.githubusercontent.com/BoykaxTeam/JoKeR/master/File_JoKeR/Orders.lua')
 sleep(0.5) 
-send(msg.chat_id_, msg.id_,'✥┆ تم تحديث السورس . 𖦲 ◜')
+send(msg.chat_id_, msg.id_,'✥┆ تم تحديث السورس . 𖦲 ◜') 
 dofile('JoKeR.lua')  
 end
 if text == "• وضع اسم الى البوت 𖠹 ." and Sudo_JoKeR(msg) then  
@@ -920,7 +920,7 @@ return false
 end
 if text == "• تنظيف الكروبات 𖤸 ." and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 local group = redis:smembers(JoKeR..'Chek:Groups') 
@@ -955,12 +955,12 @@ local sendok = #group - JoKeR
 if q == 0 then
 JoKeR = ''
 else
-JoKeR = '\n܁༯┆ تم ازالة ['..q..'](t.me/JoKeR_aHs) مجموعات من البوت 💞 ܰ'
+JoKeR = '\n܁༯┆ تم ازالة ['..q..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) مجموعات من البوت 💞 ܰ'
 end
 if w == 0 then
 JoKeRh = ''
 else
-JoKeRh = '\n܁༯┆ تم ازالة ['..w..'](t.me/JoKeR_aHs) مجموعات من البوت 💞 ܰ'
+JoKeRh = '\n܁༯┆ تم ازالة ['..w..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) مجموعات من البوت 💞 ܰ'
 end
 send(msg.chat_id_, msg.id_,'܁༯┆تم تنظيف المجموعات💞 ܰ')   
 end
@@ -1052,7 +1052,7 @@ end
 
 if text == "• تنظيف المشتركيين 𖤸 ." and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 local pv = redis:smembers(JoKeR.."User_Bot")
@@ -1085,7 +1085,7 @@ end
 if text and text:match("^رفع مطور @(.*)$") and Sudo_JoKeR(msg) then
 local username = text:match("^رفع مطور @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -1095,8 +1095,8 @@ send(msg.chat_id_,msg.id_,"܁༯┆عذرا عزيزي المستخدم هاذا
 return false 
 end      
 redis:sadd(JoKeR..'Sudo:User', result.id_)
-usertext = '\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(username or 'JoKeR_aHs')..')'
-status  = '\n☑️┆ تم ترقيته مطور في البوت'
+usertext = '\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(username or 'JoKeR_aHs')..')'
+status  = '\n܁༯┆ تم ترقيته مطور في البوت'
 texts = usertext..status
 else
 texts = '܁༯┆لايوجد حساب بهذا المعرف  💞 ܰ'
@@ -1109,18 +1109,18 @@ end
 if text and text:match("^رفع مطور (%d+)$") and Sudo_JoKeR(msg) then
 local userid = text:match("^رفع مطور (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:sadd(JoKeR..'Sudo:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
-usertext = '\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'
-status  = '\n☑️┆ تم ترقيته مطور في البوت'
+usertext = '\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'
+status  = '\n܁༯┆ تم ترقيته مطور في البوت'
 send(msg.chat_id_, msg.id_, usertext..status)
 else
-usertext = '\n👤┆ العضو ▸ '..userid..''
-status  = '\n☑️┆ تم ترقيته مطور في البوت'
+usertext = '\n܁༯┆ العضو ▸ '..userid..''
+status  = '\n܁༯┆ تم ترقيته مطور في البوت'
 send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false 
@@ -1128,14 +1128,14 @@ end
 if text and text:match("^تنزيل مطور @(.*)$") and Sudo_JoKeR(msg) then
 local username = text:match("^تنزيل مطور @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
 if result.id_ then
 redis:srem(JoKeR..'Sudo:User', result.id_)
-usertext = '\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(username or 'JoKeR_aHs')..')'
-status  = '\n☑️┆ تم تنزيله من المطورين'
+usertext = '\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(username or 'JoKeR_aHs')..')'
+status  = '\n܁༯┆ تم تنزيله من المطورين'
 texts = usertext..status
 else
 texts = '܁༯┆لايوجد حساب بهذا المعرف  💞 ܰ'
@@ -1148,18 +1148,18 @@ end
 if text and text:match("^تنزيل مطور (%d+)$") and Sudo_JoKeR(msg) then
 local userid = text:match("^تنزيل مطور (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:srem(JoKeR..'Sudo:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n📤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'
-status  = '\n☑️┆ تم تنزيله من المطورين'
+status  = '\n܁༯┆ تم تنزيله من المطورين'
 send(msg.chat_id_, msg.id_, usertext..status)
 else
-usertext = '\n👤┆العضو ▸ '..userid..''
-status  = '\n☑️┆ تم تنزيله من المطورين'
+usertext = '\n܁༯┆العضو ▸ '..userid..''
+status  = '\n܁༯┆ تم تنزيله من المطورين'
 send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false 
@@ -1171,7 +1171,7 @@ if text and not Vips(msg) then
 local JoKeR1_Msg = redis:get(JoKeR.."JoKeR1:Add:Filter:Rp2"..text..msg.chat_id_)   
 if JoKeR1_Msg then 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n 📬┆'..JoKeR1_Msg)
+send(msg.chat_id_, msg.id_,'܁༯┆ العضو ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n 📬┆'..JoKeR1_Msg)
 DeleteMessage(msg.chat_id_, {[0] = msg.id_})     
 return false
 end,nil)
@@ -1902,7 +1902,7 @@ end
 
 if text == 'تفعيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if msg.can_be_deleted_ == false then 
@@ -1932,8 +1932,8 @@ else
 LinkGp = 'لا يوجد'
 end
 Text = '🔖┆ تم تفعيل مجموعه جديده\n'..
-'\n☑️┆ بواسطة {'..Name..'}'..
-'\n☑️┆ ايدي المجموعه {`'..IdChat..'`}'..
+'\n܁༯┆ بواسطة {'..Name..'}'..
+'\n܁༯┆ ايدي المجموعه {`'..IdChat..'`}'..
 '\n👥┆ اسم المجموعه {['..NameChat..']}'..
 '\n🔖┆عدد اعضاء المجموعه *{'..NumMember..'}*'..
 '\n🖇️┆ الرابط {['..LinkGp..']}'
@@ -1947,7 +1947,7 @@ end,nil)
 end
 if text == 'تعطيل' and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -1968,8 +1968,8 @@ else
 LinkGp = 'لا يوجد'
 end
 Text = '\nتم تعطيل المجموعه ┆🔖'..
-'\n☑️┆ بواسطة {'..Name..'}'..
-'\n☑️┆ايدي المجموعه {`'..IdChat..'`}'..
+'\n܁༯┆ بواسطة {'..Name..'}'..
+'\n܁༯┆ايدي المجموعه {`'..IdChat..'`}'..
 '\n👥┆اسم المجموعه {['..NameChat..']}'..
 '\n🖇️┆ الرابط {['..LinkGp..']}'
 if not Sudo_JoKeR(msg) then
@@ -1981,7 +1981,7 @@ end,nil)
 end
 if text == 'تفعيل' and not Sudo(msg) and not redis:get(JoKeR..'Free:Bots') then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if msg.can_be_deleted_ == false then 
@@ -2021,9 +2021,9 @@ else
 LinkGp = 'لا يوجد'
 end
 Text = '🔖┆ تم تفعيل مجموعه جديده\n'..
-'\n☑️┆ بواسطة {'..Name..'}'..
-'\n👤┆ موقعه في المجموعه {'..AddPy..'}' ..
-'\n☑️┆ ايدي المجموعه {`'..IdChat..'`}'..
+'\n܁༯┆ بواسطة {'..Name..'}'..
+'\n܁༯┆ موقعه في المجموعه {'..AddPy..'}' ..
+'\n܁༯┆ ايدي المجموعه {`'..IdChat..'`}'..
 '\n👥┆ عدد اعضاء المجموعه *{'..NumMember..'}*'..
 '\n📝┆ اسم المجموعه {['..NameChat..']}'..
 '\n🖇️┆ الرابط {['..LinkGp..']}'
@@ -2041,19 +2041,20 @@ end
 if text and text:match("^ضع عدد الاعضاء (%d+)$") and Sudo_JoKeR(msg) then
 local Num = text:match("ضع عدد الاعضاء (%d+)$") 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR..'Num:Add:Bot',Num) 
-send(msg.chat_id_, msg.id_,'܁༯┆ تم تعيين عدد الاعضاء سيتم تفعيل المجموعات التي اعضائها اكثر من  ◃ ['..Num..'](t.me/JoKeR_aHs) عضو 💞 ܰ')
+send(msg.chat_id_, msg.id_,'܁༯┆ تم تعيين عدد الاعضاء سيتم تفعيل المجموعات التي اعضائها اكثر من  ◃ ['..Num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) عضو 💞 ܰ')
 end
 if text == 'تحديث السورس' and Sudo_JoKeR(msg) then if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end 
 send(msg.chat_id_, msg.id_,'✥┆ جاري تحديث السورس.. 𖦲 ◜ ')
 os.execute('rm -rf JoKeR.lua')
 os.execute('wget https://raw.githubusercontent.com/BoykaxTeam/JoKeR/master/JoKeR.lua')
+os.execute('cd File_JoKeR && wget https://raw.githubusercontent.com/BoykaxTeam/JoKeR/master/File_JoKeR/Orders.lua')
 sleep(0.5) 
 send(msg.chat_id_, msg.id_,'✥┆ تم تحديث السورس . 𖦲 ◜')
 dofile('JoKeR.lua')  
@@ -2118,7 +2119,7 @@ end
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
 if text == 'رفع النسخه الاحتياطيه' and Sudo_JoKeR(msg) then   
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if tonumber(msg.reply_to_message_id_) > 0 then
@@ -2134,7 +2135,7 @@ end
 end
 if text == 'جلب النسخه الاحتياطيه' and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 GetFile_Bot(msg)
@@ -2167,7 +2168,7 @@ end
 end
 if text == 'اضف امر' and Constructor(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR.."Set:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_,'true') 
@@ -2177,7 +2178,7 @@ end
 if text == 'حذف امر' or text == 'مسح امر' then 
 if Constructor(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR.."Del:Cmd:Group"..msg.chat_id_..':'..msg.sender_user_id_,'true') 
@@ -2731,17 +2732,17 @@ end,nil)
 elseif text == 'قفل السيلفي بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Unsupported"..msg.chat_id_,'ked')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل السيلفي بالتقييد\n⛔┆ الحاله ←التقييد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل السيلفي بالتقييد\n⛔┆ الحاله ←التقييد ')  
 end,nil)   
 elseif text == 'قفل السيلفي بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Unsupported"..msg.chat_id_,'ktm')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل السيلفي بالكتم\n⛔┆ الحاله ←الكتم ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل السيلفي بالكتم\n⛔┆ الحاله ←الكتم ')  
 end,nil)   
 elseif text == 'قفل السيلفي بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Unsupported"..msg.chat_id_,'kick')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل السيلفي بالطرد\n⛔┆ الحاله ←الطرد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل السيلفي بالطرد\n⛔┆ الحاله ←الطرد ')  
 end,nil)   
 elseif text == 'فتح السيلفي' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:del(JoKeR.."lock:Unsupported"..msg.chat_id_)  
@@ -2757,17 +2758,17 @@ end,nil)
 elseif text == 'قفل الماركداون بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Markdaun"..msg.chat_id_,'ked')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الماركداون بالتقييد\n⛔┆ الحاله ←التقييد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الماركداون بالتقييد\n⛔┆ الحاله ←التقييد ')  
 end,nil)   
 elseif text == 'قفل الماركداون بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Markdaun"..msg.chat_id_,'ktm')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الماركداون بالكتم\n⛔┆ الحاله ←الكتم ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الماركداون بالكتم\n⛔┆ الحاله ←الكتم ')  
 end,nil)   
 elseif text == 'قفل الماركداون بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Markdaun"..msg.chat_id_,'kick')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الماركداون بالطرد\n⛔┆ الحاله ←الطرد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الماركداون بالطرد\n⛔┆ الحاله ←الطرد ')  
 end,nil)   
 elseif text == 'فتح الماركداون' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:del(JoKeR.."lock:Markdaun"..msg.chat_id_)  
@@ -2783,17 +2784,17 @@ end,nil)
 elseif text == 'قفل الجهات بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Contact"..msg.chat_id_,'ked')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الجهات بالتقييد\n⛔┆ الحاله ←التقييد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الجهات بالتقييد\n⛔┆ الحاله ←التقييد ')  
 end,nil)   
 elseif text == 'قفل الجهات بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Contact"..msg.chat_id_,'ktm')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الجهات بالكتم\n⛔┆ الحاله ←الكتم ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الجهات بالكتم\n⛔┆ الحاله ←الكتم ')  
 end,nil)   
 elseif text == 'قفل الجهات بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Contact"..msg.chat_id_,'kick')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الجهات بالطرد\n⛔┆ الحاله ←الطرد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الجهات بالطرد\n⛔┆ الحاله ←الطرد ')  
 end,nil)   
 elseif text == 'فتح الجهات' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:del(JoKeR.."lock:Contact"..msg.chat_id_)  
@@ -2809,17 +2810,17 @@ end,nil)
 elseif text == 'قفل الكلايش بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Spam"..msg.chat_id_,'ked')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الكلايش بالتقييد\n⛔┆ الحاله ←التقييد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الكلايش بالتقييد\n⛔┆ الحاله ←التقييد ')  
 end,nil)   
 elseif text == 'قفل الكلايش بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Spam"..msg.chat_id_,'ktm')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الكلايش بالكتم\n⛔┆ الحاله ←الكتم ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الكلايش بالكتم\n⛔┆ الحاله ←الكتم ')  
 end,nil)   
 elseif text == 'قفل الكلايش بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:set(JoKeR.."lock:Spam"..msg.chat_id_,'kick')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'👤┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n☑️┆ تـم قفـل الكلايش بالطرد\n⛔┆ الحاله ←الطرد ')  
+send(msg.chat_id_, msg.id_,'܁༯┆ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'JoKeR_aHs')..') \n܁༯┆ تـم قفـل الكلايش بالطرد\n⛔┆ الحاله ←الطرد ')  
 end,nil)   
 elseif text == 'فتح الكلايش' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
 redis:del(JoKeR.."lock:Spam"..msg.chat_id_)  
@@ -2829,16 +2830,16 @@ end,nil)
 end
 if text == 'قفل التكرار بالطرد' and Mod(msg) then 
 redis:hset(JoKeR.."flooding:settings:"..msg.chat_id_ ,"flood",'kick')  
-send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ التقييد ܊ الكتم ܊ [الطرد](t.me/JoKeR_aHs) .')
+send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ التقييد ܊ الكتم ܊ [الطرد](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) .')
 elseif text == 'قفل التكرار' and Mod(msg) then 
 redis:hset(JoKeR.."flooding:settings:"..msg.chat_id_ ,"flood",'del')  
-send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم فتح التكرار 💞 ٭\n┘ الحالة ༯ [المسـح](t.me/JoKeR_aHs) ٭')
+send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم فتح التكرار 💞 ٭\n┘ الحالة ༯ [المسـح](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ٭')
 elseif text == 'قفل التكرار بالتقييد' and Mod(msg) then 
 redis:hset(JoKeR.."flooding:settings:"..msg.chat_id_ ,"flood",'keed')  
-send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ [التقييد](t.me/JoKeR_aHs) ܊ الكتم ܊ الطرد .')
+send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ [التقييد](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ الكتم ܊ الطرد .')
 elseif text == 'قفل التكرار بالكتم' and Mod(msg) then 
 redis:hset(JoKeR.."flooding:settings:"..msg.chat_id_ ,"flood",'mute')  
-send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ التقييد ܊ [الكتم](t.me/JoKeR_aHs) ܊ الطرد .')
+send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┤ تم قفل التكرار 💞 ٭\n┘ الحالة ◃ التقييد ܊ [الكتم](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ الطرد .')
 elseif text == 'فتح التكرار' and Mod(msg) then 
 redis:hdel(JoKeR.."flooding:settings:"..msg.chat_id_ ,"flood")  
 send(msg.chat_id_, msg.id_,'┐ هلو عمري 💞 ٭\n┘ تم فتح التكرار 💞 ٭')
@@ -2849,9 +2850,10 @@ dofile('JoKeR.lua')
 send(msg.chat_id_, msg.id_, '✥┆ تم تحديث الملفات . 𖦲 ◜') 
 end
 
+
 if text == ("تقيد") and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -2877,7 +2879,7 @@ end
 if text and text:match("^تقيد @(.*)$") and Mod(msg) then
 local username = text:match("^تقيد @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -2983,7 +2985,7 @@ end
 if text and text:match("^تقيد (%d+)$") and Mod(msg) then
 local userid = text:match("^تقيد (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if tonumber(userid) == tonumber(JoKeR) then  
@@ -3010,7 +3012,7 @@ end
 ------------------------------------------------------------------------
 if text == ("الغاء تقيد") and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3028,7 +3030,7 @@ end
 if text and text:match("^الغاء تقيد @(.*)$") and Mod(msg) then
 local username = text:match("^الغاء تقيد @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3049,7 +3051,7 @@ end
 if text and text:match("^الغاء تقيد (%d+)$") and Mod(msg) then
 local userid = text:match("^الغاء تقيد (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..userid.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")
@@ -3068,7 +3070,7 @@ end
 if text and text:match('^رفع القيود @(.*)') and Owners(msg) then 
 local username = text:match('^رفع القيود @(.*)') 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3099,7 +3101,7 @@ tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, 
 end
 if text == "رفع القيود" and Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً ?? • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً ?? • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3127,7 +3129,7 @@ end
 if text and text:match('^كشف القيود @(.*)') and Owners(msg) then 
 local username = text:match('^كشف القيود @(.*)') 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3159,7 +3161,7 @@ end
 
 if text == "كشف القيود" and Owners(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3660,8 +3662,8 @@ NUM_MSG_MAX = redis:hget(JoKeR.."flooding:settings:"..msg.chat_id_,"floodmax") o
 local text = 
 '\n🔰┆اعدادات المجموعه كتالي √↓'..
 '\nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉'..
-'\n☑️┆ علامة ال {✓} تعني معطل'..
-'\n☑️┆ علامة ال {✘} تعني مفعل'..
+'\n܁༯┆ علامة ال {✓} تعني معطل'..
+'\n܁༯┆ علامة ال {✘} تعني مفعل'..
 '\nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉'..
 '\n📌┆ الروابط ← { '..lock_links..
 ' }\n'..'📌┆ المعرفات ← { '..lock_user..
@@ -3674,14 +3676,14 @@ local text =
 ' }\n'..'📌┆ التعديل ← { '..lock_edit..
 ' }\n'..'📌┆ تعديل الميديا ← { '..lock_edit_med..
 ' }\nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉'..
-'\n'..'☑️┆ الكلايش ← { '..lock_spam..
-' }\n'..'☑️┆ الكيبورد ← { '..lock_inlin..
-' }\n'..'☑️┆ الاغاني ← { '..lock_vico..
-' }\n'..'☑️┆ المتحركه ← { '..lock_gif..
-' }\n'..'☑️┆ الملفات ← { '..lock_file..
-' }\n'..'☑️┆ الدردشه ← { '..lock_text..
-' }\n'..'☑️┆ الفيديو ← { '..lock_ved..
-' }\n'..'☑️┆ الصور ← { '..lock_photo..
+'\n'..'܁༯┆ الكلايش ← { '..lock_spam..
+' }\n'..'܁༯┆ الكيبورد ← { '..lock_inlin..
+' }\n'..'܁༯┆ الاغاني ← { '..lock_vico..
+' }\n'..'܁༯┆ المتحركه ← { '..lock_gif..
+' }\n'..'܁༯┆ الملفات ← { '..lock_file..
+' }\n'..'܁༯┆ الدردشه ← { '..lock_text..
+' }\n'..'܁༯┆ الفيديو ← { '..lock_ved..
+' }\n'..'܁༯┆ الصور ← { '..lock_photo..
 ' }\nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉'..
 '\n'..'🔖┆ الصوت ← { '..lock_muse..
 ' }\n'..'🔖┆ الملصقات ← { '..lock_ste..
@@ -3710,7 +3712,7 @@ send(msg.chat_id_, msg.id_,text)
 end    
 if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'lock:pin',msg.chat_id_) and not Constructor(msg) then
@@ -3732,7 +3734,7 @@ end,nil)
 end
 if text == 'الغاء التثبيت' and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'lock:pin',msg.chat_id_) and not Constructor(msg) then
@@ -3756,7 +3758,7 @@ end
 if text and text:match('^ضع تكرار (%d+)$') and Mod(msg) then   
 local Num = text:match('ضع تكرار (.*)')
 redis:hset(JoKeR.."flooding:settings:"..msg.chat_id_ ,"floodmax" ,Num) 
-send(msg.chat_id_, msg.id_,'܁༯┆تم وضع عدد االتكرار ◃ ◞ [('..Num..')](t.me/JoKeR_aHs) ◟ 💞 ܰ')  
+send(msg.chat_id_, msg.id_,'܁༯┆تم وضع عدد االتكرار ◃ ◞ [('..Num..')](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◟ 💞 ܰ')  
 end 
 if text and text:match('^ضع زمن التكرار (%d+)$') and Mod(msg) then   
 local Num = text:match('^ضع زمن التكرار (%d+)$')
@@ -3766,7 +3768,7 @@ end
 if text == "ضع رابط" or text == 'وضع رابط' then
 if msg.reply_to_message_id_ == 0  and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_,msg.id_,"܁༯┆ههلو عمري 💞 ܰ \n܁༯┆ارسل رابط المجموعة او قناة المجموعة 💞 ܰ")
@@ -3815,7 +3817,7 @@ end
 ---------
 if text == ("رفع بنت الكروب") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3832,7 +3834,7 @@ end
 
 if (text == ("تنزيل بنت الكروب")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3866,7 +3868,7 @@ end
 
 if text == ("رفع مطي") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3883,7 +3885,7 @@ end
 
 if (text == ("تنزيل مطي")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3917,7 +3919,7 @@ end
 ---------
 if text == ("رفع اثول") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3934,7 +3936,7 @@ end
 
 if (text == ("تنزيل اثول")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -3947,208 +3949,6 @@ end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
-end
----------
-if text and text:match("^/myage (.*)$") then
-local textage = text:match("^/myage (.*)$")
-ga = https.request('https://hso.mohammed-api.com/API/age.php?age='..URL.escape(textage)..'')
-ag = JSON.decode(ga)
-i = 0
-for k,v in pairs(ag.ok) do
-i = i + 1
-t = v.."\n"
-end
-send(msg.chat_id_, msg.id_, t)
-end
-if text == 'تفعيل ردود الملصقات' and Mod(msg) then  
-send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل ردود الملصقات 💞 ܰ ')
-redis:del(JoKeR..'JoKeR:Reply:Sticker'..msg.chat_id_)
-end
-if text == 'تعطيل ردود الملصقات' and Mod(msg) then  
-send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تعطيل ردود الملصقات 💞 ܰ')
-redis:set(JoKeR..'JoKeR:Reply:Sticker'..msg.chat_id_, true)
-end
-if text == 'تفعيل ردود السورس' and Owners(msg) then  
-send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل ردود السورس 💞 ܰ ')
-redis:del(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_)
-end
-if text == 'تعطيل ردود السورس' and Owners(msg) then  
-send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تعطيل ردود السورس 💞 ܰ')
-redis:set(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_, true)
-end
-if text == 'هاي' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'ههاهلو💕💞.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'شلونكم' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'بشوفتك اصير بخير 🥺💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'شلونك' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'خابشني مللتوني كل شوي شلونك شلونج تممام والله تممام 😭💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'شلونج' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'خابشني مللتوني كل شوي شلونك شلونج تممام والله تممام 😭💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'هلاو' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'هاههلو 💕💞.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'معيدي' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'ع راسي والله 💕'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نرتبط' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'مارتبط بحيونات 😹🥺💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'كلخرا' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE ='مـا أكلـكَ 😣💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'زاحف' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'تشرفت عمري 💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'دي' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'دنك خلي اركبك 💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'وينكم' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'تشرفت حبحب 💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'خ' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'زاحف .. ع راسي والله 😹😭♥️.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'احبك' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'مـووور عمري💕💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'باي' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'خليك باليز 🥺💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'تع' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'ادري دجاج خوما دجاج 😒💕💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'وين المدير' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'نايم بكلبي 💞.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نجب' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'ع راسي 💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == '🌚' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'لطيفورب .. كلا للعنصرية 💕💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'شكو ماكو' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'قيرك بالقلب ماقو 😹😔💗'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نجبي' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'ع راسي 💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'صباح الخير' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'اطلق من نصبح بجمالة 🥺💗.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'ها' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'طفي الكامرة 😹😭♥️.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == '🌝' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'عود شوفوني ثكيل وهاي .. طفي الكامرة 😹😭♥️.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'صباح النور' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'هسه يلة شفنة النور والله 🥺♥️.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'احبج' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = 'مـووور عمري💕💕.'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نصيحة الدقيقة' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = '‏لا تدع الناس تعلمك نفس الدرس @k777a .'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نصيحة البارحة' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = '‏‏عندما أطيل النظر إليك\n فأنا لست معجببك \nبل أنا أتبول عليك في تفكيري وهذا يأخذ مني وقتاً @k777a .'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نصيحة الغد' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = '‏‏كثرة حديثك وجلوسك مع الفتيات لايجعلك محبوب بينهن ، بل ستصبح شقيقتهن الكبرى @k777a .'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
-end
-if text == 'نصيحة اليوم' then
-if not redis:get(JoKeR..'JoKeR:Reply:SoUrcE'..msg.chat_id_) then
-ReplySoUrcE = '‏‏حين تشتاق لشخص أكتب له رسالة طويلة لكن لا تقم بـ إرسالها ونام وحين تستيقظ قم بقرائتها مرة أخرى سوف تلاحظ بأنك غبي جداً \n‏#عباس_شاكر .'
-send(msg.chat_id_, msg.id_,'['..ReplySoUrcE..']')
-end
 end
 -----------------------------------------------------
 if text == ("تاك للانبياء") and Mod(msg) then
@@ -4171,7 +3971,7 @@ end
 
 if text == ("رفع نبي") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4188,7 +3988,7 @@ end
 
 if (text == ("تنزيل نبي")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4222,7 +4022,7 @@ end
 ---------
 if text == ("رفع جلب") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4239,7 +4039,7 @@ end
 
 if (text == ("تنزيل جلب")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4273,7 +4073,7 @@ end
 ---------
 if text == ("رفع صخل") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4290,7 +4090,7 @@ end
 
 if (text == ("تنزيل صخل")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4324,7 +4124,7 @@ end
 ---------
 if text == ("رفع زاحف") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4341,7 +4141,7 @@ end
 
 if (text == ("تنزيل زاحف")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4375,7 +4175,7 @@ end
 ---------
 if text == ("رفع بكلبي") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4392,7 +4192,7 @@ end
 
 if (text == ("تنزيل بكلبي")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4409,7 +4209,7 @@ end
 -----------------------------------------------------
 if text == ("تاك للتوج") and Mod(msg) then
 local list = redis:smembers(JoKeR..'Tag:User'..msg.chat_id_)
-t = "\n܁༯┆ياتوج تعالو يردونكم 😹😭💞 . \n܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀\n"
+t = "\n܁༯┆ياتوج تعالو يردونكم 😹😭?? . \n܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀\n"
 for k,v in pairs(list) do
 local username = redis:get(JoKeR.."user:Name" .. v)
 if username then
@@ -4426,7 +4226,7 @@ end
 ---------
 if text == ("رفع تاج") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4443,7 +4243,7 @@ end
 
 if (text == ("تنزيل تاج")) and msg.reply_to_message_id_ and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4461,7 +4261,7 @@ end
 
 if text == ("نزوج") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4478,7 +4278,7 @@ end
 
 if text == ("طالق") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -4539,7 +4339,7 @@ end
 if text == 'مسح الرابط' or text == 'حذف الرابط' then
 if Mod(msg) then     
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_,msg.id_,"܁༯┆تم حذف الرابط بنجاح 💞 ܰ ")           
@@ -4555,7 +4355,7 @@ end
 if text == "حذف الصوره" or text == "مسح الصوره" then 
 if Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 https.request('https://api.telegram.org/bot'..token..'/deleteChatPhoto?chat_id='..msg.chat_id_) 
@@ -4599,7 +4399,7 @@ end
 end
 if text == 'تفعيل الترحيب' and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR..'Chek:Welcome'..msg.chat_id_,true) 
@@ -4608,7 +4408,7 @@ return false
 end
 if text == 'تعطيل الترحيب' and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:del(JoKeR..'Chek:Welcome'..msg.chat_id_) 
@@ -4771,7 +4571,7 @@ send(msg.chat_id_, msg.id_,'܁༯┆تم حذف كليشه المطور 💞 ܰ'
 end
 if text == 'ضع كليشه المطور' and Sudo_JoKeR(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR..'Set:Text:Dev:Bot'..msg.chat_id_,true)
@@ -4791,7 +4591,7 @@ return false
 end
 if text == 'تعين الايدي' and Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."CHENG:ID"..msg.chat_id_..""..msg.sender_user_id_,240,true)  
@@ -4824,7 +4624,7 @@ local List = {
 ▹ 𝙐????𝙍 𖨄 #username 𖤾.
 ▹ 𝙈𝙎𝙂 𖨄 #msgs 𖤾.
 ▹ 𝙎𝙏𝘼 𖨄 #stast 𖤾.
-▹ 𝙄𝘿 𖨄 #id 𖤾.
+▹ 𝙄𝘿 ?? #id 𖤾.
 ]],
 [[
 ┌ 𝐔𝐒𝐄𝐑 𖤱 #username 𖦴 .
@@ -4833,7 +4633,7 @@ local List = {
 └ 𝐈𝐃 𖤱 #id 𖦴 .
 ]],
 [[
-- 𓏬 𝐔𝐬𝐄𝐫 : #username 𓂅 .
+- 𓏬 𝐔𝐬𝐄𝐫 : #username ?? .
 - 𓏬 𝐌𝐬𝐆  : #msgs 𓂅 .
 - 𓏬 𝐒𝐭𝐀 : #stast 𓂅 .
 - 𓏬 𝐈𝐃 : #id 𓂅 .
@@ -4852,7 +4652,7 @@ end
 if text == 'حذف الايدي' or text == 'مسح الايدي' then
 if Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:del(JoKeR.."KLISH:ID"..msg.chat_id_)
@@ -4875,7 +4675,7 @@ end
 
 if text == 'مسح البوتات' or text == 'طرد البوتات' and Mod(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 tdcli_function ({ ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID,filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(arg,tah)  
@@ -4902,7 +4702,7 @@ end
 end
 if text == ("كشف البوتات") and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID,filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(extra,result,success)
@@ -4949,7 +4749,7 @@ end
 if text == 'ضع قوانين' or text == 'وضع قوانين' then 
 if Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Set:Rules:" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -4970,6 +4770,39 @@ else
 send(msg.chat_id_, msg.id_,"܁༯┆لايوجد قوانين 💞 ܰ ")   
 end    
 end
+if text == 'تفعيل الزخرفه' and Mod(msg) then  
+send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل الزخرفه 💞 ܰ ')
+redis:set(JoKeR..'JoKeR:Zhrfa'..msg.chat_id_)
+end
+if text == 'تعطيل الزخرفه' and Mod(msg) then  
+send(msg.chat_id_, msg.id_, '܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تعطيل الزخرفه 💞 ܰ')
+redis:del(JoKeR..'JoKeR:Zhrfa'..msg.chat_id_, true)
+end
+if text and text:match("^زخرفه انكلش (.*)$") and redis:get(JoKeR..'JoKeR:Zhrfa'..msg.chat_id_) then
+local textZzZ = text:match("^زخرفه انكلش (.*)$")
+zh = https.request('https://hso.mohammed-api.com/API/apiZagrfaEnglishe.php?text='..URL.escape(textZzZ)..'')
+zx = JSON.decode(zh)
+t = "\n٭ 𖤓┆قائمة الزخرفةه 💞◟\n܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀\n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."゠`"..v.."` \n"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+----- 
+if text and text:match("^زخرفه عربي (.*)$") and redis:get(JoKeR..'JoKeR:Zhrfa'..msg.chat_id_) then
+local textZzZ = text:match("^زخرفه عربي (.*)$")
+zh = https.request('https://hso.mohammed-api.com/API/apiZagrfaArbey.php?text='..URL.escape(textZzZ)..'')
+zx = JSON.decode(zh)
+t = "\n٭ 𖤓┆قائمة الزخرفةه 💞◟\n܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀\n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."゠ `"..v.."` \n"
+end
+send(msg.chat_id_, msg.id_, t)
+end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
 if Mod(msg) then    
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),offset_ = 0,limit_ = 1000}, function(arg,del)
@@ -4987,10 +4820,10 @@ end
 if text == 'الصلاحيات' and Mod(msg) then 
 local list = redis:smembers(JoKeR..'Coomds'..msg.chat_id_)
 if #list == 0 then
-send(msg.chat_id_, msg.id_,'⚠️┆ لا توجد صلاحيات مضافه')
+send(msg.chat_id_, msg.id_,'܁༯┆لا توجد صلاحيات مضافه💞 ܰ')
 return false
 end
-t = "\n☑️┆ قائمة الصلاحيات المضافه \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+t = "\n܁༯┆ قائمة الصلاحيات المضافه \n܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀\n"
 for k,v in pairs(list) do
 var = redis:get(JoKeR.."Comd:New:rt:bot:"..v..msg.chat_id_)
 if var then
@@ -5004,7 +4837,7 @@ end
 if text and text:match("^اضف صلاحيه (.*)$") and Mod(msg) then 
 ComdNew = text:match("^اضف صلاحيه (.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:set(JoKeR.."Comd:New:rt"..msg.chat_id_..msg.sender_user_id_,ComdNew)  
@@ -5015,7 +4848,7 @@ end
 if text and text:match("^مسح صلاحيه (.*)$") and Mod(msg) then 
 ComdNew = text:match("^مسح صلاحيه (.*)$")
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:del(JoKeR.."Comd:New:rt:bot:"..ComdNew..msg.chat_id_)
@@ -5029,26 +4862,26 @@ return false
 end 
 if text == 'مدير' then
 if not Constructor(msg) then
-send(msg.chat_id_, msg.id_"*☑️┆ تستطيع اضافه صلاحيات {ادمن - مميز - عضو} \n☑️┆ ارسل الصلاحيه مجددا*\n") 
+send(msg.chat_id_, msg.id_"*܁༯┆تستطيع اضافه صلاحيات {ادمن - مميز - عضو} 💞 ܰ\n܁༯┆ارسل الصلاحيه مجددا💞 ܰ*\n") 
 return false
 end
 end
 if text == 'ادمن' then
 if not Owners(msg) then 
-send(msg.chat_id_, msg.id_,"*☑️┆ تستطيع اضافه صلاحيات {مميز - عضو} \n☑️┆ ارسل الصلاحيه مجددا*\n") 
+send(msg.chat_id_, msg.id_,"*܁༯┆ تستطيع اضافه صلاحيات {مميز - عضو} \n܁༯┆ ارسل الصلاحيه مجددا*\n") 
 return false
 end
 end
 if text == 'مميز' then
 if not Mod(msg) then
-send(msg.chat_id_, msg.id_,"*☑️┆ تستطيع اضافه صلاحيات {عضو} \n☑️┆ ارسل الصلاحيه مجددا*\n") 
+send(msg.chat_id_, msg.id_,"*܁༯┆ تستطيع اضافه صلاحيات {عضو} \n܁༯┆ ارسل الصلاحيه مجددا*\n") 
 return false
 end
 end
 if text == 'مدير' or text == 'ادمن' or text == 'مميز' or text == 'عضو' then
 local textn = redis:get(JoKeR.."Comd:New:rt"..msg.chat_id_..msg.sender_user_id_)  
 redis:set(JoKeR.."Comd:New:rt:bot:"..textn..msg.chat_id_,text)
-send(msg.chat_id_, msg.id_, "⚠️┆ تـم اضـافـه الامـر √") 
+send(msg.chat_id_, msg.id_, "܁༯┆ تـم اضـافـه الامـر √") 
 redis:del(JoKeR.."Comd:New"..msg.chat_id_..""..msg.sender_user_id_) 
 return false  
 end 
@@ -5056,7 +4889,7 @@ end
 if text and text:match('رفع (.*)') and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) then 
 local RTPA = text:match('رفع (.*)')
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'Coomds'..msg.chat_id_,RTPA) then
@@ -5064,19 +4897,19 @@ function by_reply(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 local blakrt = redis:get(JoKeR.."Comd:New:rt:bot:"..RTPA..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n??┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n??┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..RTPA..' هنا\n')   
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA) 
 redis:sadd(JoKeR..'Vips:User'..msg.chat_id_,result.sender_user_id_)  
 elseif blakrt == 'ادمن' and Owners(msg) then 
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..RTPA..' هنا\n')   
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA)
 redis:sadd(JoKeR..'Mod:User'..msg.chat_id_,result.sender_user_id_)  
 elseif blakrt == 'مدير' and Constructor(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..RTPA..' هنا\n')   
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA)  
 redis:sadd(JoKeR..'Owners'..msg.chat_id_,result.sender_user_id_)  
 elseif blakrt == 'عضو' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..RTPA..' هنا\n')   
 end
 end,nil)   
 end   
@@ -5086,7 +4919,7 @@ end
 if text and text:match('تنزيل (.*)') and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) then 
 local RTPA = text:match('تنزيل (.*)')
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'Coomds'..msg.chat_id_,RTPA) then
@@ -5094,19 +4927,19 @@ function by_reply(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 local blakrt = redis:get(JoKeR.."Comd:New:rt:bot:"..RTPA..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنزيله من '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنزيله من '..RTPA..' هنا\n')   
 redis:srem(JoKeR..'Vips:User'..msg.chat_id_,result.sender_user_id_)  
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
 elseif blakrt == 'ادمن' and Owners(msg) then 
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنزيله من '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنزيله من '..RTPA..' هنا\n')   
 redis:srem(JoKeR..'Mod:User'..msg.chat_id_,result.sender_user_id_) 
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
 elseif blakrt == 'مدير' and Constructor(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنزيله من '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنزيله من '..RTPA..' هنا\n')   
 redis:srem(JoKeR..'Owners'..msg.chat_id_,result.sender_user_id_)  
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
 elseif blakrt == 'عضو' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنزيله من '..RTPA..' هنا\n')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..data.first_name_..'](t.me/'..(data.username_ or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنزيله من '..RTPA..' هنا\n')   
 end
 end,nil)   
 end   
@@ -5116,7 +4949,7 @@ end
 if text and text:match('^رفع (.*) @(.*)') and Mod(msg) then 
 local text1 = {string.match(text, "^(رفع) (.*) @(.*)$")}
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'Coomds'..msg.chat_id_,text1[2]) then
@@ -5124,22 +4957,22 @@ function py_username(extra, result, success)
 if result.id_ then
 local blakrt = redis:get(JoKeR.."Comd:New:rt:bot:"..text1[2]..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..text1[2]..' هنا')   
 redis:sadd(JoKeR..'Vips:User'..msg.chat_id_,result.id_)  
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
 elseif blakrt == 'ادمن' and Owners(msg) then 
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..text1[2]..' هنا')   
 redis:sadd(JoKeR..'Mod:User'..msg.chat_id_,result.id_)  
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
 elseif blakrt == 'مدير' and Constructor(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..text1[2]..' هنا')   
 redis:sadd(JoKeR..'Owners'..msg.chat_id_,result.id_)  
 redis:set(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
 elseif blakrt == 'عضو' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم رفعه '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم رفعه '..text1[2]..' هنا')   
 end
 else
-info = '⚠️┆ المعرف غلط'
+info = '܁༯┆ المعرف غلط'
 send(msg.chat_id_, msg.id_,info)
 end
 end
@@ -5149,7 +4982,7 @@ end
 if text and text:match('^تنزيل (.*) @(.*)') and Mod(msg) then 
 local text1 = {string.match(text, "^(تنزيل) (.*) @(.*)$")}
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:sismember(JoKeR..'Coomds'..msg.chat_id_,text1[2]) then
@@ -5157,22 +4990,22 @@ function py_username(extra, result, success)
 if result.id_ then
 local blakrt = redis:get(JoKeR.."Comd:New:rt:bot:"..text1[2]..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنريله من '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنريله من '..text1[2]..' هنا')   
 redis:srem(JoKeR..'Vips:User'..msg.chat_id_,result.id_)  
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'ادمن' and Owners(msg) then 
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنريله من '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنريله من '..text1[2]..' هنا')   
 redis:srem(JoKeR..'Mod:User'..msg.chat_id_,result.id_)  
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'مدير' and Constructor(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنريله من '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنريله من '..text1[2]..' هنا')   
 redis:srem(JoKeR..'Owners'..msg.chat_id_,result.id_)  
 redis:del(JoKeR.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'عضو' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n👤┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n☑️┆ تم تنريله من '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n܁༯┆ العضو ▸ ['..result.title_..'](t.me/'..(text1[3] or 'JoKeR_aHs')..')'..'\n܁༯┆ تم تنريله من '..text1[2]..' هنا')   
 end
 else
-info = '⚠️┆ المعرف غلط'
+info = '܁༯┆ المعرف غلط'
 send(msg.chat_id_, msg.id_,info)
 end
 end
@@ -5185,10 +5018,10 @@ redis:del(JoKeR..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)
 end
 if text == "رسايلي" or text == "رسائلي" or text == "msg" then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
-send(msg.chat_id_, msg.id_,'܁༯┆عدد رسائل الحلو ◃ ['..redis:get(JoKeR..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'](t.me/JoKeR_aHs) 💞 ܰ' ) 
+send(msg.chat_id_, msg.id_,'܁༯┆عدد رسائل الحلو ◃ ['..redis:get(JoKeR..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) 💞 ܰ' ) 
 end 
 if text == 'تفعيل الاذاعه' and Sudo_JoKeR(msg) then  
 if redis:get(JoKeR..'Bc:Bots') then
@@ -5228,7 +5061,7 @@ send(msg.chat_id_, msg.id_,Text)
 end
 if text == 'تفعيل البوت خدمي' and Sudo_JoKeR(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if redis:get(JoKeR..'Free:Bots') then
@@ -5241,7 +5074,7 @@ send(msg.chat_id_, msg.id_,Text)
 end
 if text == 'تعطيل البوت خدمي' and Sudo_JoKeR(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if not redis:get(JoKeR..'Free:Bots') then
@@ -5255,7 +5088,7 @@ end
 if text and text:match('^تنظيف (%d+)$') and Owners(msg) then
 local num = tonumber(text:match('^تنظيف (%d+)$')) 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if num > 1000 then 
@@ -5267,12 +5100,12 @@ for i=1,tonumber(num) do
 DeleteMessage(msg.chat_id_, {[0] = msgm})
 msgm = msgm - 1048576
 end
-send(msg.chat_id_,msg.id_,'┐ هلو عمري 💞 ٭ \n┘ تم تنظيف ◞ ['..num..'](t.me/JoKeR_aHs) ◜ رسالة ✓ ٭')
+send(msg.chat_id_,msg.id_,'┐ هلو عمري 💞 ٭ \n┘ تم تنظيف ◞ ['..num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◜ رسالة ✓ ٭')
 end
 if text == "تغير اسم البوت" or text == "تغيير اسم البوت" then 
 if Sudo_JoKeR(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -5281,8 +5114,8 @@ end
 return false
 end
 
-if text == ""..(redis:get(JoKeR..'Name:Bot') or 'توريدو').."" then  
-Namebot = (redis:get(JoKeR..'Name:Bot') or 'توريدو')
+if text == ""..(redis:get(JoKeR..'Name:Bot') or 'جوكر').."" then  
+Namebot = (redis:get(JoKeR..'Name:Bot') or 'جوكر')
 local JoKeR_Msg = {
 'عمغي 🥺💞💞 .',
 'هلا ابو الحب ??💘 .'
@@ -5296,7 +5129,7 @@ send(msg.chat_id_, msg.id_,'܁༯┆ ههلو ععمري  💞 ܰ\n܁༯┆ ال
 return false
 end
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Send:Bc:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5305,7 +5138,7 @@ return false
 end
 if text=="اذاعه بالتثبيت" and msg.reply_to_message_id_ == 0 and Sudo_JoKeR(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت ??.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت ??.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Bc:Grops:Pin" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5318,7 +5151,7 @@ send(msg.chat_id_, msg.id_,'܁༯┆ ههلو ععمري  💞 ܰ\n܁༯┆ ال
 return false
 end
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Send:Bc:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5331,7 +5164,7 @@ send(msg.chat_id_, msg.id_,'܁༯┆ ههلو ععمري  💞 ܰ\n܁༯┆ ال
 return false
 end
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Send:Fwd:Grops" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5344,7 +5177,7 @@ send(msg.chat_id_, msg.id_,'܁༯┆ ههلو ععمري  💞 ܰ\n܁༯┆ ال
 return false
 end
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 redis:setex(JoKeR.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 600, true) 
@@ -5354,7 +5187,7 @@ end
 if text and text:match('^ضع اسم (.*)') and Owners(msg) or text and text:match('^وضع اسم (.*)') and Owners(msg) then 
 local Name = text:match('^ضع اسم (.*)') or text:match('^وضع اسم (.*)') 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 tdcli_function ({ ID = "ChangeChatTitle",chat_id_ = msg.chat_id_,title_ = Name },function(arg,data) 
@@ -5370,9 +5203,9 @@ end
 end,nil) 
 end
 
-if text == "تاك للكل" or text == "تاك الكل" and Mod(msg) then
+if text == "تاك للكل" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = 200
@@ -5393,7 +5226,7 @@ end
 
 if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 function start_function(extra, result, success)
@@ -5415,7 +5248,7 @@ if redis:sismember(JoKeR..'Vips:User'..msg.chat_id_, result.sender_user_id_) the
 vip = ' مميز ،' else vip = ''
 end
 if Can_or_NotCan(result.sender_user_id_,msg.chat_id_) ~= false then
-send(msg.chat_id_, msg.id_,"\n܁༯┆هلو عمري 💞 ܰ\n܁༯┆تم تنزيل [العضو](t.me/JoKeR_aHs) 💞 ܰ\n܁༯┆ ܊  "..dev..''..crr..''..cr..''..own..''..mod..''..vip.." ܊\n")
+send(msg.chat_id_, msg.id_,"\n܁༯┆هلو عمري 💞 ܰ\n܁༯┆تم تنزيل [العضو](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) 💞 ܰ\n܁༯┆ ܊  "..dev..''..crr..''..cr..''..own..''..mod..''..vip.." ܊\n")
 else
 send(msg.chat_id_, msg.id_,"\n܁༯┆ليس لديةه رتب حتئ استطيع تنزيل 😹😭💞 ܰ  \n")
 end
@@ -5544,7 +5377,7 @@ end
 end
 if text and text:match("^(.*)$") then
 if redis:get(JoKeR..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,'܁༯┆ارسل الرد الذي تريده 💞 ܰ\n܁༯┆سواء كان ▿\n܁༯┆[صوره](t.me/JoKeR_aHs) ܊ [بصمه](t.me/JoKeR_aHs) ܊ [فيد](t.me/JoKeR_aHs) ܊ [متحركه](t.me/JoKeR_aHs) ܊ [ملصق](t.me/JoKeR_aHs) ܰ')
+send(msg.chat_id_, msg.id_,'܁༯┆ارسل الرد الذي تريده 💞 ܰ\n܁༯┆سواء كان ▿\n܁༯┆[صوره](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [بصمه](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [فيد](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [متحركه](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [ملصق](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܰ')
 redis:set(JoKeR..'Set:Rd'..msg.sender_user_id_..':'..msg.chat_id_, 'true1')
 redis:set(JoKeR..'Text:Sudo:Bot'..msg.sender_user_id_..':'..msg.chat_id_, text)
 redis:sadd(JoKeR..'List:Rd:Sudo', text)
@@ -5564,7 +5397,7 @@ end
 end
 if text == 'اضف رد للكل' and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_, msg.id_,'܁༯┆ههلو عمري 💞 ܰ \n܁༯┆ارسل الكلمة الذي تريد اضافتها 💞 ܰ')
@@ -5573,7 +5406,7 @@ return false
 end
 if text == 'حذف رد للكل' and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_, msg.id_,'܁༯┆ههلو عمري 💞 ܰ \n܁༯┆ارسل الكلمة الذي تريد حذفها 💞 ܰ')
@@ -5720,7 +5553,7 @@ end
 end
 if text and text:match("^(.*)$") then
 if redis:get(JoKeR..'Set:Owners:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
-send(msg.chat_id_, msg.id_,'܁༯┆ارسل الرد الذي تريده 💞 ܰ\n܁༯┆سواء كان ▿\n܁༯┆[صوره](t.me/JoKeR_aHs) ܊ [بصمه](t.me/JoKeR_aHs) ܊ [فيد](t.me/JoKeR_aHs) ܊ [متحركه](t.me/JoKeR_aHs) ܊ [ملصق](t.me/JoKeR_aHs) ܰ')
+send(msg.chat_id_, msg.id_,'܁༯┆ارسل الرد الذي تريده 💞 ܰ\n܁༯┆سواء كان ▿\n܁༯┆[صوره](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [بصمه](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [فيد](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [متحركه](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܊ [ملصق](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܰ')
 redis:set(JoKeR..'Set:Owners:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
 redis:set(JoKeR..'Text:Owners'..msg.sender_user_id_..':'..msg.chat_id_, text)
 redis:del(JoKeR.."Add:Rd:Owners:Gif"..text..msg.chat_id_)   
@@ -5752,7 +5585,7 @@ end
 end
 if text == 'اضف رد' and Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_, msg.id_,'܁༯┆ههلو عمري 💞 ܰ \n܁༯┆ارسل الكلمة الذي تريد اضافتها 💞 ܰ')
@@ -5761,7 +5594,7 @@ return false
 end
 if text == 'حذف رد' and Owners(msg) then
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 send(msg.chat_id_, msg.id_,'܁༯┆ارسل الكلمةه التي تريد حذفها 💞 ܰ ')
@@ -5815,7 +5648,7 @@ end
 end
 end
 -------------------------------
-if text == ""..(redis:get(JoKeR..'Name:Bot') or 'توريدو').." غادر" or text == 'غادر' then  
+if text == ""..(redis:get(JoKeR..'Name:Bot') or 'جوكر').." غادر" or text == 'غادر' then  
 if Sudo(msg) and not redis:get(JoKeR..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=JoKeR,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'܁༯┆باي راح اشتاقلكم 😭💞 ܰ ') 
@@ -5824,7 +5657,7 @@ end
 return false  
 end
 if text == 'بوت' then
-Namebot = (redis:get(JoKeR..'Name:Bot') or 'توريدو')
+Namebot = (redis:get(JoKeR..'Name:Bot') or 'جوكر')
 send(msg.chat_id_, msg.id_,'أسمي اللطيف '..Namebot..' . 𖤐◟') 
 end
 if text == 'الاحصائيات' then
@@ -5915,7 +5748,7 @@ if redis:get(JoKeR..'Bot:Id'..msg.chat_id_)  then
 redis:del(JoKeR..'Bot:Id'..msg.chat_id_) 
 Text = '\n܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل الايدي 💞 ܰ' 
 else
-Text = '\n܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل الايدي 💞 ܰ'
+Text = '\n܁༯┆ههلو عمري 💞 ܰ \n܁༯┆تم تفعيل الايدي ?? ܰ'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
@@ -6096,9 +5929,13 @@ if text == 'كشف' and tonumber(msg.reply_to_message_id_) > 0 then
 function start_function(extra, result, success)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(extra,data) 
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
-local username = ('[@'..data.username_..']' or 'لا يوجد')
+if result.username_ then
+local username = '@'..result.username_ 
+else
+local username = 'لا يوجد '
+end
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆ايدي العضو  ◃ *'..iduser..'* 💞 ܰ\n܁༯┆معرف  العضو ◃ *'..username..'* 💞 ܰ\n܁༯┆رتبة العضو ◃ *'..rtp..'* 💞 ܰ')
+send(msg.chat_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆ايدي العضو  ◃ *'..iduser..'* 💞 ܰ\n܁༯┆معرف  العضو ◃ ['..username..'] 💞 ܰ\n܁༯┆رتبة العضو ◃ *'..rtp..'* 💞 ܰ')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -6110,9 +5947,8 @@ function start_function(extra, result, success)
 if result.id_ then
 tdcli_function ({ID = "GetUser",user_id_ = result.id_},function(extra,data) 
 local rtp = Rutba(result.id_,msg.chat_id_)
-local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆ايدي العضو  ◃ *'..iduser..'* 💞 ܰ\n܁༯┆معرف  العضو ◃ *'..username..'* 💞 ܰ\n܁༯┆رتبة العضو ◃ *'..rtp..'* 💞 ܰ')
+send(msg.chat_id_, msg.id_,'܁༯┆هلو عمري 💞 ܰ\n܁༯┆ايدي العضو  ◃ *'..iduser..'* 💞 ܰ\n܁༯┆معرف  العضو ◃ ['..username..'] 💞 ܰ\n܁༯┆رتبة العضو ◃ *'..rtp..'* 💞 ܰ')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,'༯┆المعرف غير صحيح ')
@@ -6329,7 +6165,7 @@ else
 username = 'لا يوجد '
 end
 if result.status_.ID == "UserStatusRecently" and result.profile_photo_ ~= false then
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, taha.photos_[0].sizes_[1].photo_.persistent_id_,'\n˹ 𖢊 𝑈𝑠𝑒𝑅 𖡻 '..username..' ま .\n˹ 𖢊 𝑖𝐷 𖡻 '..msg.sender_user_id_..' ま .\n˹ 𖢊 𝑆𝑡𝑎𝑆 𖡻 '..Rutba(msg.sender_user_id_,msg.chat_id_)..' ま .\n˹ 𖢊 𝐴𝑢𝑡𝑂 𖡻 '..Total_Msg(Msguser)..' ま .\n˹ 𖢊 𝑀𝑎𝑠𝐺 𖡻 '..Msguser..' ま .\n˹ 𖢊 𝐸𝑑𝑖𝑇 𖡻 '..edit..' ま .\n˹ 𖢊 𝐺𝑎𝑚𝐸 𖡻 '..NUMPGAME..' ま .\n')   
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, taha.photos_[0].sizes_[1].photo_.persistent_id_,'\n˹ 𖢊 𝑈𝑠𝑒𝑅 𖡻 '..username..' ま .\n˹ 𖢊 𝑖𝐷 𖡻 '..msg.sender_user_id_..' ま .\n˹ 𖢊 𝑆𝑡𝑎𝑆 𖡻 '..Rutba(msg.sender_user_id_,msg.chat_id_)..' ま .\n˹ 𖢊 𝐴𝑢??𝑂 𖡻 '..Total_Msg(Msguser)..' ま .\n˹ 𖢊 𝑀𝑎𝑠𝐺 𖡻 '..Msguser..' ま .\n˹ 𖢊 𝐸𝑑𝑖𝑇 𖡻 '..edit..' ま .\n˹ 𖢊 𝐺𝑎𝑚𝐸 𖡻 '..NUMPGAME..' ま .\n')   
 else 
 if result.status_.ID == "UserStatusEmpty" and result.profile_photo_ == false then
 send(msg.chat_id_, msg.id_,'[\n˹ 𖢊 𝑈𝑠𝑒𝑅 𖡻 '..username..' ま .\n˹ 𖢊 𝑖𝐷 𖡻 '..msg.sender_user_id_..' ま .\n˹ 𖢊 𝑆𝑡𝑎𝑆 𖡻 '..Rutba(msg.sender_user_id_,msg.chat_id_)..' ま .\n˹ 𖢊 𝐴𝑢𝑡𝑂 𖡻 '..Total_Msg(Msguser)..' ま .\n˹ 𖢊 𝑀𝑎𝑠𝐺 𖡻 '..Msguser..' ま .\n˹ 𖢊 𝐸𝑑𝑖𝑇 𖡻 '..edit..' ま .\n˹ 𖢊 𝐺𝑎𝑚𝐸 𖡻 '..NUMPGAME..' ま .]\n')   
@@ -6385,13 +6221,13 @@ local Num = tonumber(redis:get(JoKeR..'Add:Contact'..msg.chat_id_..':'..msg.send
 if Num == 0 then 
 Text = '܁༯┆ماعدكك جهات 😹😔💞'
 else
-Text = '܁༯┆عدد جهاتك المضافة ˼ ['..Num..'](t.me/JoKeR_aHs) ˹'
+Text = '܁༯┆عدد جهاتك المضافة ˼ ['..Num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ˹'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text == "تنظيف المشتركين" and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 local pv = redis:smembers(JoKeR.."User_Bot")
@@ -6412,7 +6248,7 @@ if sendok == 0 then
 send(msg.chat_id_, msg.id_,'܁༯┆لا يوجد مشتركين وهميين في البوت 💞 ܰ  \n')   
 else
 local ok = #pv - sendok
-send(msg.chat_id_, msg.id_,'܁༯┆ عدد المشتركين ◃ ['..#pv..'](t.me/JoKeR_aHs) ܰ\n܁༯┆تم ازالة ◃ ['..sendok..'](t.me/JoKeR_aHs) " من المشتركين  \n܁༯┆عدد المشتركين الحقيقي ◃ ['..ok..'](t.me/JoKeR_aHs) " مشترك\n')   
+send(msg.chat_id_, msg.id_,'܁༯┆ عدد المشتركين ◃ ['..#pv..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ܰ\n܁༯┆تم ازالة ◃ ['..sendok..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) " من المشتركين  \n܁༯┆عدد المشتركين الحقيقي ◃ ['..ok..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) " مشترك\n')   
 end
 end
 end,nil)
@@ -6422,7 +6258,7 @@ return false
 end
 if text == "تنظيف الكروبات" and Sudo_JoKeR(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 local group = redis:smembers(JoKeR..'Chek:Groups') 
@@ -6457,12 +6293,12 @@ local sendok = #group - JoKeR
 if q == 0 then
 JoKeR = ''
 else
-JoKeR = '\n܁༯┆ تم ازالة ['..q..'](t.me/JoKeR_aHs) مجموعات من البوت 💞 ܰ'
+JoKeR = '\n܁༯┆ تم ازالة ['..q..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) مجموعات من البوت 💞 ܰ'
 end
 if w == 0 then
 JoKeRh = ''
 else
-JoKeRh = '\n܁༯┆ تم ازالة ['..w..'](t.me/JoKeR_aHs) مجموعات من البوت 💞 ܰ'
+JoKeRh = '\n܁༯┆ تم ازالة ['..w..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) مجموعات من البوت 💞 ܰ'
 end
 send(msg.chat_id_, msg.id_,'܁༯┆تم تنظيف المجموعات💞 ܰ')   
 end
@@ -6487,7 +6323,7 @@ local numadded = string.match(text, "(%d+)")
 local iduserr = redis:get(JoKeR..'id:user'..msg.chat_id_)  
 redis:del(JoKeR..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) 
 redis:incrby(JoKeR..'Msg_User'..msg.chat_id_..':'..iduserr,numadded)  
-send(msg.chat_id_, msg.id_,"\n٭ 𖤓┆تم اضافة ◞ ["..numadded..'](t.me/JoKeR_aHs) ◜ من الرسائل 💞 ٭')  
+send(msg.chat_id_, msg.id_,"\n٭ 𖤓┆تم اضافة ◞ ["..numadded..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◜ من الرسائل 💞 ٭')  
 end
 ------------------------------------------------------------------------
 if redis:get(JoKeR.."gemadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
@@ -6524,7 +6360,7 @@ if text and text:match("^اضف مجوهرات (%d+)$") and msg.reply_to_message
 local Num = text:match("^اضف مجوهرات (%d+)$")
 function reply(extra, result, success)
 redis:incrby(JoKeR..'NUM:GAMES'..msg.chat_id_..result.sender_user_id_,Num)  
-send(msg.chat_id_, msg.id_,"┐ هلو عمري 💞 ٭ \n┘ تم اضافة ◞ ["..Num..'](t.me/JoKeR_aHs) ◜ مجوهرات ✓ ٭')  
+send(msg.chat_id_, msg.id_,"┐ هلو عمري 💞 ٭ \n┘ تم اضافة ◞ ["..Num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◜ مجوهرات ✓ ٭')  
 end
 tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},reply, nil)
 return false
@@ -6544,32 +6380,32 @@ local Num = text:match("^اضف رسائل (%d+)$")
 function reply(extra, result, success)
 redis:del(JoKeR..'Msg_User'..msg.chat_id_..':'..result.sender_user_id_) 
 redis:incrby(JoKeR..'Msg_User'..msg.chat_id_..':'..result.sender_user_id_,Num)  
-send(msg.chat_id_, msg.id_, "\n٭ 𖤓┆تم اضافة ◞ ["..num..'](t.me/JoKeR_aHs) ◜ من الرسائل 💞 ٭')  
+send(msg.chat_id_, msg.id_, "\n٭ 𖤓┆تم اضافة ◞ ["..num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◜ من الرسائل 💞 ٭')  
 end
 tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},reply, nil)
 return false
 end
 if text == 'مجوهراتي' or text == 'مجوهراتي' then 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 local Num = redis:get(JoKeR..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0
 if Num == 0 then 
 Text = '٭ 𖤓┆لم تلعب اي لعبة للحصول على المجوهرات ☓◜'
 else
-Text = '٭ 𖤓┆عدد مجوهراتك ◃ ◞ ['..Num..'](t.me/JoKeR_aHs) ◜.'
+Text = '٭ 𖤓┆عدد مجوهراتك ◃ ◞ ['..Num..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA) ◜.'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text and text:match("^بيع مجوهراتي (%d+)$") or text and text:match("^بيع مجوهراتي (%d+)$") then
 local NUMPY = text:match("^بيع مجوهراتي (%d+)$") or text:match("^بيع مجوهراتي (%d+)$") 
 if AddChannel(msg.sender_user_id_) == false then
-send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • ['..redis:get(JoKeR..'add:ch:username')..'] .')
+send(msg.chat_id_, msg.id_,'- هلو حب ، لايمكنك استخدام البوت 💕.\n- ﭑشترك اولاً 💕 • [https://t.me/Mzijjeat] .')
 return false
 end
 if tonumber(NUMPY) == tonumber(0) then
-send(msg.chat_id_,msg.id_,"\n✥┆لا تستطيع البيع اقل من ◞[1](t.me/JoKeR_aHs)◜ ◃") 
+send(msg.chat_id_,msg.id_,"\n✥┆لا تستطيع البيع اقل من ◞[1](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA)◜ ◃") 
 return false 
 end
 if tonumber(redis:get(JoKeR..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_)) == tonumber(0) then
@@ -6583,7 +6419,7 @@ end
 local NUMNKO = (NUMPY * 50)
 redis:decrby(JoKeR..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_,NUMPY)  
 redis:incrby(JoKeR..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_,NUMNKO)  
-send(msg.chat_id_,msg.id_,'┐ تم خصم ◞['..NUMPY..'](t.me/JoKeR_aHs)◜ من مجوهراتك ✓ ٭\n┘ تم اضافة ◞['..(NUMPY * 50)..'](t.me/JoKeR_aHs)◜ رسالة الى رسائلك ✓ ٭')
+send(msg.chat_id_,msg.id_,'┐ تم خصم ◞['..NUMPY..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA)◜ من مجوهراتك ✓ ٭\n┘ تم اضافة ◞['..(NUMPY * 50)..'](https://t.me/joinchat/AAAAAEvr1yqOypm-uHojPA)◜ رسالة الى رسائلك ✓ ٭')
 end 
 return false 
 end
@@ -6750,7 +6586,7 @@ if (text and text == "Useuwkq ") then
 send(msg.chat_id_, msg.id_, ' ked uwiq')
 redis:del(JoKeR.."Fun_Bots:"..msg.chat_id_)
 end
-local Name_Bot = (redis:get(JoKeR..'Name:Bot') or 'توريدو')
+local Name_Bot = (redis:get(JoKeR..'Name:Bot') or 'جوكر')
 if not redis:get(JoKeR.."Fun_Bots:"..msg.chat_id_) then
 if text ==  ""..Name_Bot..' شنو رئيبهاذا' and tonumber(msg.reply_to_message_id_) > 0 then     
 function FunBot(extra, result, success) 
